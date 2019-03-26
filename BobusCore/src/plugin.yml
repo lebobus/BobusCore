@@ -1,0 +1,11 @@
+main: me.lebobus.bobuscore.Main
+name: BobusCore
+version: '1.0'
+description: Vous dormez au gaz
+author: Bobus
+commands:
+     ffa:
+     kts:
+     ban:
+     pardon:
+     kick:
