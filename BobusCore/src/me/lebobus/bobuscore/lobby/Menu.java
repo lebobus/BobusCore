@@ -74,17 +74,19 @@ public class Menu implements Listener {
     
  
     public static void show(Player p) {
-            p.openInventory(inv);
+        p.openInventory(inv);
     }
     
     
     @EventHandler
     public void onDrop(PlayerDropItemEvent e) {
+    	if(!(Bukkit.getServerName().equalsIgnoreCase("Lobby"))) return;
     	e.setCancelled(true);
     }
     
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
+    	if(!(Bukkit.getServerName().equalsIgnoreCase("Lobby"))) return;
     	e.setCancelled(true);
     }
     

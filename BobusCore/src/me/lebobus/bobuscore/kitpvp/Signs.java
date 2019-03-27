@@ -15,6 +15,7 @@ public class Signs implements Listener {
 
 	@EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
+		String alreadyChosen = ChatColor.GRAY + "You've already chosen the " + ChatColor.AQUA + Kits.getKit(e.getPlayer()) + ChatColor.GRAY + " kit.";
             if (!(e.getAction() == Action.RIGHT_CLICK_BLOCK)) return;
             if (e.getClickedBlock().getState() instanceof Sign) {
                     Sign s = (Sign) e.getClickedBlock().getState();
@@ -24,23 +25,41 @@ public class Signs implements Listener {
                     }
                     
                     if (s.getLine(1).contains("Arena") && s.getLine(2).equalsIgnoreCase("Main")) {
-                    	int y = e.getPlayer().getLocation().getBlockY();
-                    	if (Kits.hasKit(e.getPlayer()) == true && y >= 14) {
+                    	e.getPlayer().sendMessage(Kits.alreadyChosen);
                     		e.getPlayer().teleport(new Location(Bukkit.getWorld("world"), 208.5D, 14.0D, 195.5D, 0.0F, 0.0F));
-                        	Kits.setKit(e.getPlayer(), Kits.PvP);
                     		return;
-                    	}
-                    	
-                    	if (Kits.hasKit(e.getPlayer()) == true && y < 14) {
-                        	e.getPlayer().sendMessage(ChatColor.GRAY + "You already have chosen " + ChatColor.AQUA + Kits.getKitName(e.getPlayer()));
-                    		return;
-                    	}
-                    
-                    	
-                    	e.getPlayer().teleport(new Location(Bukkit.getWorld("world"), 208.5D, 14.0D, 195.5D, 0.0F, 0.0F));
-                    	Kits.setKit(e.getPlayer(), Kits.PvP);
-                    	return;
                     }
+                    	
+                    if (s.getLine(1).contains("Kit") && s.getLine(2).equalsIgnoreCase("PvP")) {
+                    	int y = e.getPlayer().getLocation().getBlockY();
+                    	if (Kits.hasKit(e.getPlayer()) == true && y >= 14 && !(Kits.getKit(e.getPlayer()).equals(Kits.PvP))) {
+                        	Kits.setKit(e.getPlayer(), Kits.PvP);
+                        	return;
+                    	}
+                    	
+                    	if (Kits.hasKit(e.getPlayer()) == true && Kits.getKit(e.getPlayer()).equals(Kits.PvP) && y >= 14) {
+                        	e.getPlayer().sendMessage(alreadyChosen);
+                    		return;
+                    	}
+                    	
+                    	Kits.setKit(e.getPlayer(), Kits.PvP);
+                    }
+                    
+                    if (s.getLine(1).contains("Kit") && s.getLine(2).equalsIgnoreCase("Fireman")) {
+                    	int y = e.getPlayer().getLocation().getBlockY();
+                    	if (Kits.hasKit(e.getPlayer()) == true && y >= 14 && !(Kits.getKit(e.getPlayer()).equals(Kits.Fireman))) {
+                        	Kits.setKit(e.getPlayer(), Kits.Fireman);
+                        	return;
+                    	}
+                    	
+                    	if (Kits.hasKit(e.getPlayer()) == true && Kits.getKit(e.getPlayer()).equals(Kits.Fireman) && y >= 14) {
+                        	e.getPlayer().sendMessage(alreadyChosen);
+                    		return;
+                    	}
+                    	
+                    	Kits.setKit(e.getPlayer(), Kits.Fireman);
+                    }
+                    	
                     
                     
                     
