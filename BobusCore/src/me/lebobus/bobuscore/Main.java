@@ -17,6 +17,7 @@ import me.lebobus.bobuscore.kitpvp.Files;
 import me.lebobus.bobuscore.kitpvp.KitsListener;
 import me.lebobus.bobuscore.kitpvp.Scoreboard;
 import me.lebobus.bobuscore.kitpvp.Signs;
+import me.lebobus.bobuscore.kitpvp.Stats;
 import me.lebobus.bobuscore.kts.Kts;
 import me.lebobus.bobuscore.kts.KtsListener;
 import me.lebobus.bobuscore.lobby.Menu;
@@ -44,6 +45,7 @@ public class Main
     getCommand("pardon").setExecutor(new Ban());
     getCommand("kts").setExecutor(new Kts());
     getCommand("kick").setExecutor(new Kick());
+    getCommand("stats").setExecutor(new Stats());
     getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord"); 
         
     

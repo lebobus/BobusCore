@@ -3,6 +3,7 @@ package me.lebobus.bobuscore.kitpvp;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -11,6 +12,14 @@ import me.lebobus.bobuscore.Main;
 public class Scoreboard implements Listener {
 
 	public Files stats;
+	
+	
+	@EventHandler
+    public void test(BlockBreakEvent e) {
+		addKill(e.getPlayer());
+		addDeath(e.getPlayer());
+		addCredits(e.getPlayer());
+	}
 	
 	@EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
