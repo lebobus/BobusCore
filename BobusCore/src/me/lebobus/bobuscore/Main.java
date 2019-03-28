@@ -45,8 +45,6 @@ public class Main
     getCommand("kts").setExecutor(new Kts());
     getCommand("kick").setExecutor(new Kick());
     getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord"); 
-    //RandomFireWorks.getManager().addColors();
-    //RandomFireWorks.getManager().addTypes();
         
     
     config = new Files(getDataFolder(), "config.yml");

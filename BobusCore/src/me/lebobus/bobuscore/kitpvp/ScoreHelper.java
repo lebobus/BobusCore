@@ -12,11 +12,6 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
-/**
- *
- * @author crisdev333
- *
- */
 public class ScoreHelper {
 
     private static HashMap<UUID, ScoreHelper> players = new HashMap<>();

@@ -21,6 +21,7 @@ public class Scoreboard implements Listener {
 
         ScoreHelper helper = ScoreHelper.createScore(player);
         
+        
         Integer credits = stats.getInt("player."+player.getName()+".credits");
         Integer kills = stats.getInt("player."+player.getName()+".kills");
         Integer deaths = stats.getInt("player."+player.getName()+".deaths");
