@@ -24,10 +24,11 @@ import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 import me.lebobus.bobuscore.Main;
 
+@SuppressWarnings("unused")
 public class Menu implements Listener {
 
 	private static Inventory inv;
- 
+/*
 	public static void sendToServer(Player player, String servername){
         ByteArrayOutputStream byteOutput = new ByteArrayOutputStream();
         DataOutputStream output = new DataOutputStream(byteOutput);
@@ -84,29 +85,12 @@ public class Menu implements Listener {
     	e.setCancelled(true);
     }
     
+    
     @EventHandler
     public void onDamage(EntityDamageEvent e) {
     	if(!(Bukkit.getServerName().equalsIgnoreCase("Lobby"))) return;
     	e.setCancelled(true);
     }
-    
-    @EventHandler
-    public void autoRespawn(PlayerDeathEvent e) {
-    	e.getEntity().spigot().respawn();
-    }
-    
-    @EventHandler
-    public void InventoryClickEvent(InventoryClickEvent event){
-        ItemStack t = event.getCurrentItem(); 
-        
-        if(!(Bukkit.getServerName().equalsIgnoreCase("Lobby"))) return;
-        
-        if (event.getWhoClicked().isOp() == true) return;
-        
-        if (t == null || t.getType() == Material.AIR) return;   
-            event.setCancelled(true);
-        }
-    
     
     
     @SuppressWarnings("deprecation")
@@ -147,6 +131,7 @@ public class Menu implements Listener {
     	
     }
     
+    
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
     	
@@ -172,4 +157,5 @@ public class Menu implements Listener {
                     sendToServer(p, "minigames");
             }
     }
+    */
 }

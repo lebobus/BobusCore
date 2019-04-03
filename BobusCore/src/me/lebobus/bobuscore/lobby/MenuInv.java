@@ -11,9 +11,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
+@SuppressWarnings("unused")
 public class MenuInv implements Listener {
 
-	
+	/*
 	public void sendStaff(Player p) {
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&m---------------------------------------------------"));
 		p.sendMessage(ChatColor.translateAlternateColorCodes('&', ""));
@@ -129,5 +130,5 @@ public class MenuInv implements Listener {
 	    }
 	    
 	}
-	
+	*/
 }

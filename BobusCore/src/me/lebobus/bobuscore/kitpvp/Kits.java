@@ -13,14 +13,14 @@ import net.md_5.bungee.api.ChatColor;
 public enum Kits implements Listener {
 
         
-    PvP, Fireman, ; //Add more here
+    PvP, Fireman, ;
      
     public static HashMap<UUID, Kits> currentKit = new HashMap<UUID, Kits>();
     
     public static String kitReceived;
     public static String alreadyChosen;
      
-    public static void setKit(Player p, Kits kit){ //save the player's kit inside the HashMap
+    public static void setKit(Player p, Kits kit){ 
     currentKit.put(p.getUniqueId(), kit);
     
     String kitReceived = ChatColor.GRAY + "You've chosen the " + ChatColor.AQUA + getKit(p) + ChatColor.GRAY + " kit.";
@@ -37,20 +37,20 @@ public enum Kits implements Listener {
     
     }
      
-    public static Kits getKit(Player p){ //Return the enum (kit) from the player
+    public static Kits getKit(Player p){ 
     return currentKit.get(p.getUniqueId());
     }
      
-    public static boolean hasKit(Player p){ //Check if the player has a kit
+    public static boolean hasKit(Player p){
     if(currentKit.containsKey(p.getUniqueId())) return true;
     return false;
     }
      
-    public static void clearPlayer(Player p){ //On leave + reload, for memory leaks
+    public static void clearPlayer(Player p){ 
     currentKit.remove(p.getUniqueId());
     }
      
-    public static String getKitName(Player p){ //Not sure if actually works lol.
+    public static String getKitName(Player p){ 
     return getKit(p).toString();
     }
     

@@ -8,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import me.lebobus.bobuscore.lobby.Menu;
 import net.md_5.bungee.api.ChatColor;
 
 public class Signs implements Listener {
@@ -20,12 +19,11 @@ public class Signs implements Listener {
             if (e.getClickedBlock().getState() instanceof Sign) {
                     Sign s = (Sign) e.getClickedBlock().getState();
                     if (s.getLine(1).contains("Server") && s.getLine(2).equalsIgnoreCase("Lobby")) {
-                    	Menu.sendToServer(e.getPlayer(), "lobby");
+                    	//Menu.sendToServer(e.getPlayer(), "lobby");
                     	return;
                     }
                     
                     if (s.getLine(1).contains("Arena") && s.getLine(2).equalsIgnoreCase("Main")) {
-                    	e.getPlayer().sendMessage(Kits.alreadyChosen);
                     		e.getPlayer().teleport(new Location(Bukkit.getWorld("world"), 208.5D, 14.0D, 195.5D, 0.0F, 0.0F));
                     		return;
                     }
@@ -43,6 +41,10 @@ public class Signs implements Listener {
                     	}
                     	
                     	Kits.setKit(e.getPlayer(), Kits.PvP);
+                    }
+                    
+                    if (s.getLine(1).contains("Shop") && s.getLine(2).equalsIgnoreCase("Kits")) {
+                    	KitsShopGUI.show(e.getPlayer());
                     }
                     
                     if (s.getLine(1).contains("Kit") && s.getLine(2).equalsIgnoreCase("Fireman")) {
