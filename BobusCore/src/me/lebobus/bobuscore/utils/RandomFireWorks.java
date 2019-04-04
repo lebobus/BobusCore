@@ -1,4 +1,4 @@
-package me.lebobus.bobuscore.listeners;
+package me.lebobus.bobuscore.utils;
 
 import java.util.ArrayList;
 import java.util.Random;

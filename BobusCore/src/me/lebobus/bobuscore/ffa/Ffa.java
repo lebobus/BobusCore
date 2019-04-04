@@ -17,8 +17,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 
 import me.lebobus.bobuscore.Main;
-import me.lebobus.bobuscore.listeners.ActionBar;
-import me.lebobus.bobuscore.listeners.RandomFireWorks;
+import me.lebobus.bobuscore.utils.ActionBar;
+import me.lebobus.bobuscore.utils.RandomFireWorks;
 
 @SuppressWarnings("unused")
 public class Ffa

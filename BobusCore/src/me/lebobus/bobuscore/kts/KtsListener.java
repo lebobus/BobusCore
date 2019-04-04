@@ -30,8 +30,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import me.lebobus.bobuscore.Main;
-import me.lebobus.bobuscore.listeners.ActionBar;
-import me.lebobus.bobuscore.listeners.RandomFireWorks;
+import me.lebobus.bobuscore.utils.ActionBar;
+import me.lebobus.bobuscore.utils.RandomFireWorks;
 
 @SuppressWarnings("unused")
 public class KtsListener

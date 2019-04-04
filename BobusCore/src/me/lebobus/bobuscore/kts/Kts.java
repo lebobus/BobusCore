@@ -19,7 +19,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.lebobus.bobuscore.Main;
-import me.lebobus.bobuscore.listeners.ActionBar;
+import me.lebobus.bobuscore.utils.ActionBar;
 
 public class Kts
   implements CommandExecutor
