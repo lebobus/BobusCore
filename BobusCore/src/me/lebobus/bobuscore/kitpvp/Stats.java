@@ -12,6 +12,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.lebobus.bobuscore.Main;
+import me.lebobus.bobuscore.kitpvp.listeners.Killstreak;
+import me.lebobus.bobuscore.utils.Files;
+import me.lebobus.bobuscore.utils.Scoreboard;
 import net.md_5.bungee.api.ChatColor;
 
 public class Stats implements CommandExecutor {
@@ -147,11 +150,15 @@ public class Stats implements CommandExecutor {
 			        
 			        String targetkdr2 = df.format(targetkdr);
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&m-----------------------------------------------------"));
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+target.getPlayer().getName()+"&7's stats :"));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+target.getName()+"&7's stats :"));
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Kills : &b"+targetkills));
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Deaths : &b"+targetdeaths));
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7KD/R : &b"+targetkdr2));
+					if (target.isOnline()) {
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Killstreak : &b"+targetks));
+					} else {
+						p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Killstreak : &b0"));
+					}
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Best killstreak : &b"+targetbestks));
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Credits : &b"+tcreditsformatted));
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&m-----------------------------------------------------"));

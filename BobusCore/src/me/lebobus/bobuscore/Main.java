@@ -1,9 +1,6 @@
 package me.lebobus.bobuscore;
 
-import java.io.IOException;
-
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -13,24 +10,23 @@ import me.lebobus.bobuscore.ban.Ban;
 import me.lebobus.bobuscore.ffa.Ffa;
 import me.lebobus.bobuscore.ffa.FfaListener;
 import me.lebobus.bobuscore.kick.Kick;
-import me.lebobus.bobuscore.kitpvp.Files;
-import me.lebobus.bobuscore.kitpvp.Killstreak;
-import me.lebobus.bobuscore.kitpvp.KitsListener;
-import me.lebobus.bobuscore.kitpvp.KitsShopGUI;
-import me.lebobus.bobuscore.kitpvp.ScoreHelper;
-import me.lebobus.bobuscore.kitpvp.Scoreboard;
-import me.lebobus.bobuscore.kitpvp.Signs;
+import me.lebobus.bobuscore.kitpvp.Shop;
 import me.lebobus.bobuscore.kitpvp.Stats;
+import me.lebobus.bobuscore.kitpvp.kits.Fireman;
+import me.lebobus.bobuscore.kitpvp.kits.KitsListener;
+import me.lebobus.bobuscore.kitpvp.kits.Vampire;
+import me.lebobus.bobuscore.kitpvp.listeners.Killstreak;
+import me.lebobus.bobuscore.kitpvp.listeners.KitsShopGUI;
+import me.lebobus.bobuscore.kitpvp.listeners.Signs;
 import me.lebobus.bobuscore.kts.Kts;
 import me.lebobus.bobuscore.kts.KtsListener;
 import me.lebobus.bobuscore.lobby.Menu;
 import me.lebobus.bobuscore.lobby.MenuInv;
+import me.lebobus.bobuscore.utils.Files;
+import me.lebobus.bobuscore.utils.ScoreHelper;
+import me.lebobus.bobuscore.utils.Scoreboard;
 
-@SuppressWarnings("unused")
-public class Main
-  extends JavaPlugin
-  implements Listener
-{
+public class Main extends JavaPlugin implements Listener {
 	
 	public static Main inst;
 	 
@@ -42,7 +38,7 @@ public class Main
   public void onEnable() {
 	  
     registerEvents(this, new Listener[] { this });
-    registerEvents(this, new Listener[] { new FfaListener(), new KtsListener(), new Menu(), new MenuInv(), new Signs(), new KitsListener(), new Scoreboard(), new Killstreak(), new KitsShopGUI()  });
+    registerEvents(this, new Listener[] { new FfaListener(), new KtsListener(), new Menu(), new MenuInv(), new Signs(), new KitsListener(), new Scoreboard(), new Killstreak(), new KitsShopGUI(), new Vampire(), new Fireman()  });
     getCommand("ffa").setExecutor(new Ffa());
     getCommand("ban").setExecutor(new Ban());
     getCommand("pardon").setExecutor(new Ban());
@@ -51,6 +47,7 @@ public class Main
     getCommand("stats").setExecutor(new Stats());
     getCommand("addcredits").setExecutor(new Stats());
     getCommand("takecredits").setExecutor(new Stats());
+    getCommand("shop").setExecutor(new Shop());
     getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord"); 
         
     

@@ -1,4 +1,4 @@
-package me.lebobus.bobuscore.kitpvp;
+package me.lebobus.bobuscore.utils;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -7,6 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import me.lebobus.bobuscore.Main;
+import me.lebobus.bobuscore.kitpvp.listeners.Killstreak;
 
 public class Scoreboard implements Listener {
 

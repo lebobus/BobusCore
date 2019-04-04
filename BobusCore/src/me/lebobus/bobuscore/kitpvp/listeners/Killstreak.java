@@ -1,4 +1,4 @@
-package me.lebobus.bobuscore.kitpvp;
+package me.lebobus.bobuscore.kitpvp.listeners;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +13,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import me.lebobus.bobuscore.Main;
+import me.lebobus.bobuscore.kitpvp.kits.Kits;
+import me.lebobus.bobuscore.utils.Files;
+import me.lebobus.bobuscore.utils.Scoreboard;
 
 public class Killstreak implements Listener {
 
@@ -30,13 +33,6 @@ public class Killstreak implements Listener {
         	Entity p = event.getEntity().getPlayer();
             Entity killer = event.getEntity().getPlayer().getKiller();
 
-          
-	        Integer ks = Killstreak.killstreak.get(p.getUniqueId());
-	        Integer killerbestks = this.stats.getInt("player."+killer.getName()+".bestkillstreak");
-	        Integer bestks = this.stats.getInt("player."+p.getName()+".bestkillstreak");
-	        Integer killerks = Killstreak.killstreak.get(killer.getUniqueId());
-
-
 	        Scoreboard.addKill(event.getEntity().getPlayer().getKiller());
 	        Scoreboard.addDeath(event.getEntity().getPlayer());
 	        Scoreboard.addKillstreak(event.getEntity().getPlayer().getKiller());
@@ -44,31 +40,33 @@ public class Killstreak implements Listener {
 	        Scoreboard.takeCredits(event.getEntity().getPlayer(), 5);
 
 	        
+	        Integer ks = Killstreak.killstreak.get(p.getUniqueId());
+	        Integer killerbestks = this.stats.getInt("player."+killer.getName()+".bestkillstreak");
+	        Integer bestks = this.stats.getInt("player."+p.getName()+".bestkillstreak");
+	        Integer killerks = Killstreak.killstreak.get(killer.getUniqueId());
+	        
 	        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&b"+killer.getName()+" &7killed &b"+p.getName()+"&7."));
 	        killer.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b+15c &7for killing &b"+p.getName()+"&7."));
 	        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c-5c &7for getting killed by &b"+killer.getName()+"&7."));
 
-
-            if (Killstreak.killstreak.containsKey(killer.getUniqueId())) {
-                
+	        if (Killstreak.killstreak.containsKey(killer.getUniqueId())) {
                 if (killerks > killerbestks) {
                 	Scoreboard.setBestkillstreak(event.getEntity().getPlayer().getKiller(), killerks);
-                	p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've set a new &bkillstreak &7record of &b"+killerks+"&7."));
+                	killer.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've set a new &bkillstreak &7record of &b"+killerks+"&7."));
                 }
-
-            }
-            
-            if (Killstreak.killstreak.containsKey(p.getUniqueId())) {
-                
+	        }
+	        
+	        if (Killstreak.killstreak.containsKey(p.getUniqueId())) {
                 if (ks > bestks) {
                 	Scoreboard.setBestkillstreak(event.getEntity().getPlayer(), ks);
                 	p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've set a new &bkillstreak &7record of &b"+ks+"&7."));
-  
+                	Kits.clearPlayer((Player)p);
                 }
+	        }
+	        
                 Killstreak.killstreak.put(p.getUniqueId(), 0);
                 Scoreboard.refreshScoreboard((Player) p);
-            }
-            
+                Kits.clearPlayer((Player)p);
         }
     }
     

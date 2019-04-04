@@ -1,4 +1,4 @@
-package me.lebobus.bobuscore.kitpvp;
+package me.lebobus.bobuscore.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

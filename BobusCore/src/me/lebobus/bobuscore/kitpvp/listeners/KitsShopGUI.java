@@ -1,4 +1,4 @@
-package me.lebobus.bobuscore.kitpvp;
+package me.lebobus.bobuscore.kitpvp.listeners;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -11,13 +11,14 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import me.lebobus.bobuscore.Main;
+import me.lebobus.bobuscore.utils.Files;
+import me.lebobus.bobuscore.utils.Scoreboard;
 
 public class KitsShopGUI implements Listener {
 	
@@ -26,31 +27,37 @@ public class KitsShopGUI implements Listener {
 	public Files stats;
 	
     public KitsShopGUI() {
-    	inv = Bukkit.getServer().createInventory(null, 9, ChatColor.AQUA + "Buy new kits!");
+    	inv = Bukkit.getServer().createInventory(null, 9, ChatColor.AQUA + ChatColor.ITALIC.toString() + "Buy new kits!");
         
     	    ItemStack kitpvp = new ItemStack(Material.IRON_CHESTPLATE);
     	    ItemStack kitarcher = new ItemStack(Material.BOW);
     	    ItemStack kitfireman = new ItemStack(Material.BLAZE_POWDER);
+    	    ItemStack kitvampire = new ItemStack(Material.GOLDEN_CARROT);
     	    
             ItemMeta kitpvpmetameta = kitpvp.getItemMeta();
             ItemMeta kitarchermeta = kitarcher.getItemMeta();
             ItemMeta kitfiremanmeta = kitfireman.getItemMeta();
+            ItemMeta kitvampiremeta = kitvampire.getItemMeta();
             
-            kitpvpmetameta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aKit PvP"));
-            kitarchermeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&aKit Archer"));
-            kitfiremanmeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&cKit Fireman"));
+            kitpvpmetameta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&b&oKit PvP"));
+            kitarchermeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&b&oKit Archer"));
+            kitfiremanmeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&b&oKit Fireman"));
+            kitvampiremeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&b&oKit Vampire"));
             
-            kitpvpmetameta.setLore(Arrays.asList(ChatColor.GREEN + "10,000 credits"));
-            kitarchermeta.setLore(Arrays.asList(ChatColor.GREEN + "10,000 credits"));
-            kitfiremanmeta.setLore(Arrays.asList(ChatColor.GREEN + "10,000 credits"));
+            kitpvpmetameta.setLore(Arrays.asList(ChatColor.translateAlternateColorCodes('&', "&7&oBasic PvP Kit."), "", ChatColor.translateAlternateColorCodes('&', "&b&oCost &7&o: &b&o10,000 credits&7&o.")));
+            kitarchermeta.setLore(Arrays.asList(ChatColor.translateAlternateColorCodes('&', "&7&oLess damage, more range."), "", ChatColor.translateAlternateColorCodes('&', "&b&oCost &7&o: &b&o10,000 credits&7&o.")));
+            kitfiremanmeta.setLore(Arrays.asList(ChatColor.translateAlternateColorCodes('&', "&7&o10% chance of igniting the enemy per hit."), "", ChatColor.translateAlternateColorCodes('&', "&b&oCost &7&o: &b&o10,000 credits&7&o.")));
+            kitvampiremeta.setLore(Arrays.asList(ChatColor.translateAlternateColorCodes('&', "&7&oFully heals after a kill."), "", ChatColor.translateAlternateColorCodes('&', "&b&oCost &7&o: &b&o10,000 credits&7&o.")));
             
             kitpvp.setItemMeta(kitpvpmetameta);
             kitarcher.setItemMeta(kitarchermeta);
             kitfireman.setItemMeta(kitfiremanmeta);
+            kitvampire.setItemMeta(kitvampiremeta);
             
             inv.setItem(0, kitpvp);
             inv.setItem(1, kitarcher);
             inv.setItem(2, kitfireman);
+            inv.setItem(3, kitvampire);
             
             return;
     }
@@ -58,12 +65,6 @@ public class KitsShopGUI implements Listener {
     
     public static void show(Player p) {
         p.openInventory(inv);
-    }
-    
-    
-    @EventHandler
-    public void test(BlockBreakEvent e) {
-    	Scoreboard.takeCredits(e.getPlayer(), 10);
     }
     
     
@@ -87,15 +88,39 @@ public class KitsShopGUI implements Listener {
             if (t == null || t.getType() == Material.AIR) return;
             if (t.getItemMeta() == null) return;
             if (t.getItemMeta().getDisplayName().contains("Kit PvP")) {
-            	p.sendMessage("kitpvp");
             	if(stats.getString("player."+p.getName()+".kits").contains("pvp")) {
             	   e.getWhoClicked().sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You already possess the &bPvP &7kit."));
             	   e.setCancelled(true);
+            	   e.getWhoClicked().closeInventory();
+            	   return;
+            	}
+                   e.setCancelled(true);
+                   e.getWhoClicked().closeInventory();
+            }
+            
+            
+            if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Kit Archer")) {
+            	if(stats.getString("player."+p.getName()+".kits").contains("archer")) {
+            	   p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You already possess the &bArcher &7kit."));
+            	   e.setCancelled(true);
+            	   e.getWhoClicked().closeInventory();
+            	   return;
+            	}
+                   e.setCancelled(true);
+                   e.getWhoClicked().closeInventory();
+            }
+            
+            
+            if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Kit Fireman")) {
+            	if(stats.getString("player."+p.getName()+".kits").contains("fireman")) {
+            	   p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You already possess the &bFireman &7kit."));
+            	   e.setCancelled(true);
+            	   e.getWhoClicked().closeInventory();
             	   return;
             	}
             	if (pcredits >= 10000) {
-            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've bought the &bPvP &7kit for &b10&7,&b000 credits&7."));
-            		list.add("pvp");
+            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've bought the &bFireman &7kit for &b10&7,&b000 credits&7."));
+            		list.add("fireman");
             		stats.set("player."+p.getName()+".kits", list);
             		stats.saveFile();
             		Scoreboard.takeCredits((Player)e.getWhoClicked(), 10000);
@@ -107,44 +132,19 @@ public class KitsShopGUI implements Listener {
             }
             
             
-            if (t == null || t.getType() == Material.AIR) return;
-            if (t.getItemMeta() == null) return;
-            if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Kit Fireman")) {
-            	p.sendMessage("kitfireman");
-            	if(stats.getString("player."+p.getName()+".kits").contains("fireman")) {
-            	   p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You already possess the &bFireman &7kit."));
+            if (e.getCurrentItem().getItemMeta().getDisplayName().contains("Kit Vampire")) {
+            	if(stats.getString("player."+p.getName()+".kits").contains("vampire")) {
+            	   p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You already possess the &bVampire &7kit."));
             	   e.setCancelled(true);
+            	   e.getWhoClicked().closeInventory();
             	   return;
             	}
             	if (pcredits >= 10000) {
-            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've bought the &bFireman &7kit for &b10&7,&b000 credits&7."));
-            		list.add("fireman");
+            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've bought the &bVampire &7kit for &b10&7,&b000 credits&7."));
+            		list.add("vampire");
             		stats.set("player."+p.getName()+".kits", list);
-            		
-            		// TAKE CREDITS //
-                    ScoreHelper helper = ScoreHelper.createScore(p.getPlayer());
-                    
-                    Integer creditss = stats.getInt("player."+p.getName()+".credits");
-                    Integer kills = stats.getInt("player."+p.getName()+".kills");
-                    Integer deaths = stats.getInt("player."+p.getName()+".deaths");
-                    Integer bestks = stats.getInt("player."+p.getPlayer().getName()+".bestkillstreak");
-                    Integer totalcredits = creditss-10000;
-
-                    stats.set("player."+p.getName()+".credits", totalcredits);
-                    stats.set("player."+p.getName()+".kills", kills);
-                    stats.set("player."+p.getName()+".deaths", deaths);
-                    stats.set("player."+p.getName()+".killstreak", Killstreak.killstreak.get(p.getUniqueId()));
-                    stats.set("player."+p.getName()+".bestkillstreak", bestks);
-                    
-                    helper.setTitle("&b"+p.getName());
-                    helper.setSlot(5, "&8» &7Kills &a" + kills);
-                    helper.setSlot(4, "&8» &7Deaths &a" + deaths);
-                    helper.setSlot(3, "&8» &7Killstreak &a" + Killstreak.killstreak.get(p.getUniqueId()));
-                    helper.setSlot(2, "&8» &7Best killstreak &a" + bestks);
-                    helper.setSlot(1, "&8» &7Credits &a" + totalcredits);
-                    //////////////////
-                    
             		stats.saveFile();
+            		Scoreboard.takeCredits((Player)e.getWhoClicked(), 10000);
             	} else {
             		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You don't have enough &bcredits&7. You're missing &c"+s+" credits&7."));
             	}

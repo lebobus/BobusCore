@@ -12,3 +12,4 @@ commands:
      stats:
      addcredits:
      takecredits:
+     shop:
