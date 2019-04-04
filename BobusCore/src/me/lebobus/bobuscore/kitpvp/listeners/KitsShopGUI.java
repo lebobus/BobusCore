@@ -119,7 +119,8 @@ public class KitsShopGUI implements Listener {
             	   return;
             	}
             	if (pcredits >= 10000) {
-            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've bought the &bFireman &7kit for &b10&7,&b000 credits&7."));
+            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You bought the &bFireman &7kit for &b10&7,&b000 credits&7."));
+            		Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&b"+p.getName()+" bought the &bFireman &7kit for &b10&7,&b000 credits&7."));
             		list.add("fireman");
             		stats.set("player."+p.getName()+".kits", list);
             		stats.saveFile();
@@ -140,7 +141,8 @@ public class KitsShopGUI implements Listener {
             	   return;
             	}
             	if (pcredits >= 10000) {
-            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've bought the &bVampire &7kit for &b10&7,&b000 credits&7."));
+            		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You bought the &bVampire &7kit for &b10&7,&b000 credits&7."));
+            		Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&b"+p.getName()+" bought the &bVampire &7kit for &b10&7,&b000 credits&7."));
             		list.add("vampire");
             		stats.set("player."+p.getName()+".kits", list);
             		stats.saveFile();
