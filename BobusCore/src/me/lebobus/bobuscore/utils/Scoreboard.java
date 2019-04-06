@@ -13,29 +13,7 @@ public class Scoreboard implements Listener {
 
 	public Files stats;
 	
-	/*
-	@EventHandler
-    public void test(BlockBreakEvent e) {
-		Player p = e.getPlayer();
-		Integer ks = Killstreak.killstreak.get(p.getUniqueId());
-		Integer newks = ks + 1;
-		Killstreak.killstreak.put(p.getUniqueId(), newks);
-		if (Killstreak.killstreak.containsKey(p.getUniqueId())) {
-            //Killstreak.killstreak.remove(p.getUniqueId());
-            stats = new Files(Main.inst.getDataFolder(), "stats.yml");
-            this.stats.loadFile();
-            Integer bestks = stats.getInt("player."+p.getName()+".bestkillstreak");
-            
-            p.sendMessage(newks +"a"+ bestks+"b");
-            if (newks > bestks) {
-            	stats.set("player."+p.getName()+".bestkillstreak", newks);
-            	p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7You've set a new &bkillstreak &7record of &b"+newks));
-            	stats.saveFile();
-            }
-		}
-		e.getPlayer().sendMessage("debug");
-	}
-	*/
+
 	@EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();

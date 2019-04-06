@@ -22,17 +22,7 @@ public class Ban implements CommandExecutor {
 				return true;
 			}
 			
-            if (args.length == 0) {
-            	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/ban &7[&bplayer&7] [&breason&7]"));
-                    return true;
-            }
-            
-            if (args.length > 2) {
-            	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/ban &7[&bplayer&7] [&breason&7]"));
-                    return true;
-            }
-            
-            if (args.length < 2) {
+            if (args.length == 0 || args.length > 2 || args.length < 2) {
             	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/ban &7[&bplayer&7] [&breason&7]"));
                     return true;
             }
@@ -66,17 +56,7 @@ public class Ban implements CommandExecutor {
 				return true;
 			}
 			
-			if (args.length == 0) {
-            	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/pardon &7[&bplayer&7]"));
-                    return true;
-            }
-            
-            if (args.length > 1) {
-            	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/pardon &7[&bplayer&7]"));
-                    return true;
-            }
-            
-            if (args.length < 1) {
+			if (args.length == 0 || args.length > 1 || args.length < 1) {
             	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/pardon &7[&bplayer&7]"));
                     return true;
             }

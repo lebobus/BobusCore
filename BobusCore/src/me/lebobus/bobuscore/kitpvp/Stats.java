@@ -14,19 +14,19 @@ import org.bukkit.entity.Player;
 import me.lebobus.bobuscore.Main;
 import me.lebobus.bobuscore.kitpvp.listeners.Killstreak;
 import me.lebobus.bobuscore.utils.Files;
+import me.lebobus.bobuscore.utils.IntegerCheck;
 import me.lebobus.bobuscore.utils.Scoreboard;
 import net.md_5.bungee.api.ChatColor;
 
 public class Stats implements CommandExecutor {
 	
 	public Files stats;
-	
 
      public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
 		
     	 if (cmd.getName().equalsIgnoreCase("addcredits")) {
     		 if (args.length == 0 || args.length == 1 || args.length > 2) {
-    			 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/addcredits &7[&bplayer&7], [&bcredits&7]"));
+    			 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/addcredits &7[&bplayer&7] [&bcredits&7]"));
  				 return true;
  			}
  			
@@ -34,12 +34,12 @@ public class Stats implements CommandExecutor {
  			if (args.length == 2) {
  				@SuppressWarnings("deprecation")
  				OfflinePlayer target = Bukkit.getServer().getOfflinePlayer(args[0]);
- 				if (!target.hasPlayedBefore()) {
-             		sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+args[0]+"&7 does not exist&7."));
-             		return true;
+				if (stats.getString("player."+target.getName()) == null) {
+            		sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+args[0]+"&7 does not exist&7."));
+            		return true;
                 }
  				
- 				if (!isInt(args[1])) {
+ 				if (!IntegerCheck.isInt(args[1])) {
  					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+args[1]+"&7 is not an integer&7."));
              		return true;
  				}
@@ -59,7 +59,7 @@ public class Stats implements CommandExecutor {
     	 
     	 if (cmd.getName().equalsIgnoreCase("takecredits")) {
     		 if (args.length == 0 || args.length == 1 || args.length > 2) {
-    			 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/takecredits &7[&bplayer&7], [&bcredits&7]"));
+    			 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/takecredits &7[&bplayer&7] [&bcredits&7]"));
  				 return true;
  			}
  			
@@ -67,12 +67,12 @@ public class Stats implements CommandExecutor {
  			if (args.length == 2) {
  				@SuppressWarnings("deprecation")
  				OfflinePlayer target = Bukkit.getServer().getOfflinePlayer(args[0]);
- 				if (!target.hasPlayedBefore()) {
-             		sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+args[0]+"&7 does not exist&7."));
-             		return true;
+				if (stats.getString("player."+target.getName()) == null) {
+            		sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+args[0]+"&7 does not exist&7."));
+            		return true;
                 }
  				
- 				if (!isInt(args[1])) {
+ 				if (!IntegerCheck.isInt(args[1])) {
  					sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+args[1]+"&7 is not an integer&7."));
              		return true;
  				}
@@ -132,12 +132,11 @@ public class Stats implements CommandExecutor {
 			if (args.length == 1) {
 				@SuppressWarnings("deprecation")
 				OfflinePlayer target = Bukkit.getServer().getOfflinePlayer(args[0]);
-				if (!target.hasPlayedBefore()) {
+				if (stats.getString("player."+target.getName()) == null) {
             		p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b"+args[0]+"&7 does not exist&7."));
             		return true;
                 }
 				
-				if (target != null) {
 					Integer targetcredits = stats.getInt("player."+target.getName()+".credits");
 					String tcreditsformatted = NumberFormat.getIntegerInstance(Locale.US).format(targetcredits);
 					
@@ -163,7 +162,7 @@ public class Stats implements CommandExecutor {
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Credits : &b"+tcreditsformatted));
 					p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&8&m-----------------------------------------------------"));
 					return true;
-				}
+				
 				
 			}
 		}
@@ -174,16 +173,6 @@ public class Stats implements CommandExecutor {
 		return false;
      }
 	
-     
-     
-     public static boolean isInt(String s) {
-    	    try {
-    	        Integer.parseInt(s);
-    	    } catch (NumberFormatException nfe) {
-    	        return false;
-    	    }
-    	    return true;
-    	}
      
      
 }

@@ -1,5 +1,6 @@
 package me.lebobus.bobuscore.kitpvp.kits;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
@@ -27,6 +28,8 @@ public class KitsListener implements Listener {
 	public Files config;
     public Files stats;
 	
+    public static File path;
+    
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		Player p = (Player) e.getPlayer();
@@ -57,9 +60,9 @@ public class KitsListener implements Listener {
     public void playerDropItem(PlayerDropItemEvent e) {
         if (e.getItemDrop().getItemStack().getType() == Material.BOWL) {
     	    e.getItemDrop().remove();
-            } else {
-            	e.setCancelled(true);
-            }
+        } else {
+            e.setCancelled(true);
+        }
     }
     
     
