@@ -18,20 +18,11 @@ public class Kick implements CommandExecutor {
 				return true;
 			}
 			
-            if (args.length == 0) {
+            if (args.length == 0 || args.length > 1 || args.length < 1) {
             	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/kick &7[&bplayer&7]"));
                     return true;
             }
             
-            if (args.length > 1) {
-            	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/kick &7[&bplayer&7]"));
-                    return true;
-            }
-            
-            if (args.length < 1) {
-            	sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7Usage : &b/kick &7[&bplayer&7]"));
-                    return true;
-            }
             
             OfflinePlayer target = Bukkit.getServer().getPlayer(args[0]);
             if (args.length == 1) {

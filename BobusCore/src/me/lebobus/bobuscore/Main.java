@@ -134,7 +134,7 @@ public class Main extends JavaPlugin implements Listener {
   }
   
   public static Plugin getPlugin() {
-    return plugin;
+      return plugin;
   }
   
 }

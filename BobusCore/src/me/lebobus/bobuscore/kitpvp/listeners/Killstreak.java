@@ -45,7 +45,7 @@ public class Killstreak implements Listener {
 	        Integer bestks = this.stats.getInt("player."+p.getName()+".bestkillstreak");
 	        Integer killerks = Killstreak.killstreak.get(killer.getUniqueId());
 	        
-	        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&b"+killer.getName()+" &7has killed &b"+p.getName()+"&7."));
+	        Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', "&b"+killer.getName()+" &7has killed &c"+p.getName()+"&7."));
 	        killer.sendMessage(ChatColor.translateAlternateColorCodes('&', "&b+15c &7for killing &b"+p.getName()+"&7."));
 	        p.sendMessage(ChatColor.translateAlternateColorCodes('&', "&c-5c &7for getting killed by &b"+killer.getName()+"&7."));
 

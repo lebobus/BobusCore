@@ -32,7 +32,7 @@ public class KitsShopGUI implements Listener {
     	    ItemStack kitpvp = new ItemStack(Material.IRON_CHESTPLATE);
     	    ItemStack kitarcher = new ItemStack(Material.BOW);
     	    ItemStack kitfireman = new ItemStack(Material.BLAZE_POWDER);
-    	    ItemStack kitvampire = new ItemStack(Material.GOLDEN_CARROT);
+    	    ItemStack kitvampire = new ItemStack(Material.SPECKLED_MELON);
     	    
             ItemMeta kitpvpmetameta = kitpvp.getItemMeta();
             ItemMeta kitarchermeta = kitarcher.getItemMeta();
